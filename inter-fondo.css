@@ -1,0 +1,108 @@
+/* Fondo blanco, azul clarito en los lados, barra fija, partículas */
+:root {
+    --azul-suave: #eef6fc;
+    --azul-lateral: #dceef8;
+    --gris-fondo: #f4faff;
+    --caja-azul: #eef6fc;
+    --caja-azul-hover: #e5f3fb;
+    --altura-nav: 96px;
+}
+
+body.inter-site {
+    background: #ffffff;
+    background-image: linear-gradient(
+        90deg,
+        var(--azul-lateral) 0%,
+        #f0f8fd 6%,
+        #ffffff 18%,
+        #ffffff 82%,
+        #f0f8fd 94%,
+        var(--azul-lateral) 100%
+    );
+    position: relative;
+    min-height: 100vh;
+    padding-top: var(--altura-nav);
+}
+
+/* Contorno azul en bordes */
+body.inter-site::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    box-shadow:
+        inset 0 0 100px rgba(62, 175, 228, 0.1),
+        inset 0 0 0 1px rgba(62, 175, 228, 0.18);
+}
+
+/* Rayos de luz muy suaves en los laterales */
+body.inter-site::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        linear-gradient(105deg, rgba(62, 175, 228, 0.09) 0%, transparent 28%),
+        linear-gradient(255deg, rgba(62, 175, 228, 0.08) 0%, transparent 26%),
+        linear-gradient(75deg, transparent 72%, rgba(62, 175, 228, 0.07) 100%),
+        linear-gradient(285deg, transparent 74%, rgba(13, 97, 133, 0.05) 100%);
+    opacity: 0.85;
+}
+
+#inter-particulas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Barra de navegación SIEMPRE fija arriba */
+body.inter-site > header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+body.inter-site > section,
+body.inter-site > footer,
+body.inter-site > .container,
+body.inter-site > .container-form {
+    position: relative;
+    z-index: 1;
+}
+
+body.inter-site > section {
+    background: transparent;
+}
+
+/* Sin fondo opaco: las partículas se ven en toda la página */
+body.inter-site > section.bg-azul-suave {
+    background: transparent;
+}
+
+body.inter-site .hero {
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --altura-nav: 72px;
+    }
+
+    body.inter-site {
+        background-image: none;
+        background-color: #ffffff;
+    }
+
+    body.inter-site::before,
+    body.inter-site::after {
+        opacity: 0.35;
+    }
+}
